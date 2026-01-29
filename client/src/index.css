@@ -1,0 +1,487 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: Georgia, serif;
+  overflow-x: hidden;
+}
+
+/* EDIT BUTTON */
+.edit-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border: 1px solid gold;
+  background: transparent;
+  color: gold;
+  padding: 8px 14px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* COMMON */
+.section {
+  padding: 80px 60px;
+}
+
+.center-title {
+  text-align: center;
+  font-size: 42px;
+  color: gold;
+  margin-bottom: 40px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  background: radial-gradient(circle at top, #121212, #000);
+  padding-bottom: 140px;
+}
+
+.logo {
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: gold;
+  position: absolute;
+  top: 30px;
+  left: 60px;
+}
+
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 95vw;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+/* STATS */
+.stats-box {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #111;
+  padding: 20px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.stats-box .big {
+  color: gold;
+  font-size: 28px;
+}
+
+.stats-box span {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.stats-box .line {
+  height: 1px;
+  background: gold;
+  margin: 10px 0;
+}
+
+/* BUSINESS */
+.business-name {
+  font-size: 56px;
+  margin-top: 30px;
+  color: gold;
+}
+
+.business-actions {
+  margin-top: 10px;
+}
+
+.subscribe-btn,
+.message-btn {
+  border: 1px solid gold;
+  background: transparent;
+  color: gold;
+  padding: 6px 14px;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+/* REACH */
+.reach-us-inline {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.reach-title {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.reach-icons span {
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+/* COMPANIES */
+.companies-wrapper {
+  margin-top: 14px;
+  overflow: hidden;
+}
+
+.companies-track {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+  animation: move 20s linear infinite;
+}
+
+.company-name {
+  color: #aaa;
+  letter-spacing: 2px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+@keyframes move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ABOUT */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  background: linear-gradient(180deg, #0f0f0f 0%, #161616 100%);
+  padding: 140px 60px;
+}
+
+.about-left h2 {
+  font-size: 40px;
+  color: #f5a623;
+  margin-bottom: 20px;
+}
+
+.about-text {
+  max-width: 520px;
+  color: #d0d0d0;
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+.about-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about-image-wrapper {
+  position: relative;
+}
+
+.about-main-img {
+  width: 420px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.about-overlay-img {
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 200px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 4px solid #000;
+}
+
+/* WHY */
+.why {
+  background-size: cover;
+  background-position: center;
+}
+
+.why-overlay {
+  max-width: 1200px;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 120px 20px;
+  text-align: center;
+}
+
+.why-overlay h2 {
+  font-size: 42px;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.why-overlay p {
+  max-width: 800px;
+  margin: auto;
+  color: #ddd;
+  line-height: 1.8;
+}
+
+/* WORD BY WORD ANIMATION */
+.word-animate {
+  display: inline-block;
+  max-width: 800px;
+  margin: auto;
+}
+
+.word {
+  opacity: 0;
+  display: inline-block;
+  animation: wordFade 0.5s ease forwards;
+}
+
+@keyframes wordFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* PRODUCT CAROUSEL */
+.carousel {
+  position: relative;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-track {
+  position: relative;
+  height: 420px;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 320px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  transform: translateX(-50%) scale(0.7);
+  opacity: 0;
+  transition: 0.45s ease;
+}
+
+.carousel-item.active {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  z-index: 3;
+}
+
+.carousel-item.prev {
+  transform: translateX(-150%) scale(0.85);
+  opacity: 0.6;
+}
+
+.carousel-item.next {
+  transform: translateX(50%) scale(0.85);
+  opacity: 0.6;
+}
+
+.carousel-arrow {
+  position: absolute;
+  border: 1px solid gold;
+  color: gold;
+  background: transparent;
+  font-size: 28px;
+  padding: 8px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-arrow.left {
+  left: 60px;
+}
+
+.carousel-arrow.right {
+  right: 60px;
+}
+
+/* GALLERY */
+.gallery-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.gallery-card {
+  position: relative;
+  height: 420px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.75)
+  );
+}
+
+/* PROFILE BLUR */
+.gallery-top {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.gallery-avatar-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.gallery-avatar-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  filter: blur(6px);
+  opacity: 0.6;
+  border-radius: 50%;
+}
+
+.gallery-avatar {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+.gallery-bottom {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+}
+
+.gallery-actions {
+  display: flex;
+  gap: 14px;
+  font-size: 13px;
+}
+
+/* FOOTER */
+.thanks {
+  text-align: center;
+  margin-top: 50px;
+  color: gold;
+  font-size: 18px;
+  font-family: "Oooh Baby", cursive;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 20px;
+  }
+
+  .business-name {
+    font-size: 40px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ================= EXTRA RESPONSIVE FIXES ================= */
+
+/* Short-height laptops (1280×577, 1400×559, etc.) */
+@media (max-height: 600px) {
+  .why-overlay {
+    padding: 60px 20px;
+  }
+
+  .why-overlay h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .word-animate {
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 700px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 1024px) {
+  .why-overlay {
+    padding: 80px 20px;
+  }
+
+  .why-overlay h2 {
+    font-size: 36px;
+  }
+
+  .word-animate {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .why-overlay {
+    padding: 60px 16px;
+  }
+
+  .why-overlay h2 {
+    font-size: 28px;
+  }
+
+  .word-animate {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+  .why-overlay h2 {
+    font-size: 24px;
+  }
+
+  .word-animate {
+    font-size: 13px;
+  }
+}
