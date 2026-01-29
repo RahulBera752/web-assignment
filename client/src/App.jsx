@@ -19,14 +19,12 @@ export default function App() {
     why: "Lorem ipsum why choose us...",
   });
 
-  // 🔥 LOAD DATA FROM MONGODB ON PAGE LOAD
+  /* LOAD DATA FROM MONGODB */
   useEffect(() => {
     fetch("http://localhost:5000/api/content")
       .then((res) => res.json())
       .then((data) => {
-        if (data) {
-          setContent(data);
-        }
+        if (data) setContent(data);
       })
       .catch((err) => console.error("Failed to load content", err));
   }, []);
@@ -34,15 +32,9 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing content={content} />} />
-
       <Route
         path="/edit"
-        element={
-          <EditForm
-            content={content}
-            setContent={setContent}
-          />
-        }
+        element={<EditForm content={content} setContent={setContent} />}
       />
     </Routes>
   );

@@ -1,45 +1,39 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function EditForm({ content, setContent }) {
   const navigate = useNavigate();
 
-  // Local state for companies (comma separated)
-  const [companiesInput, setCompaniesInput] = useState("");
-
-  // 🔥 SYNC INPUT WHEN CONTENT LOADS FROM MONGODB
-  useEffect(() => {
-    setCompaniesInput(content.companies?.join(", ") || "");
-  }, [content.companies]);
+  const [companiesInput, setCompaniesInput] = useState(
+    content.companies?.join(", ") || ""
+  );
 
   const handleSave = async () => {
     const updatedContent = {
-      ...content,
+      businessName: content.businessName,
+      about: content.about,
+      why: content.why,
       companies: companiesInput
         .split(",")
         .map((c) => c.trim())
         .filter(Boolean),
     };
 
+    setContent(updatedContent);
+
     try {
       const res = await fetch("http://localhost:5000/api/content", {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedContent),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to save data");
-      }
+      if (!res.ok) throw new Error("Save failed");
 
-      // ✅ UPDATE REACT STATE ONLY AFTER DB SUCCESS
-      setContent(updatedContent);
       navigate("/");
-    } catch (error) {
-      console.error("Save failed:", error);
-      alert("❌ Data not saved to MongoDB");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save data to MongoDB");
     }
   };
 
@@ -47,7 +41,6 @@ export default function EditForm({ content, setContent }) {
     <div style={styles.wrapper}>
       <h1 style={styles.title}>Edit Page Content</h1>
 
-      {/* BUSINESS NAME */}
       <label style={styles.label}>Business Name</label>
       <input
         style={styles.input}
@@ -55,10 +48,8 @@ export default function EditForm({ content, setContent }) {
         onChange={(e) =>
           setContent({ ...content, businessName: e.target.value })
         }
-        placeholder="Enter business name"
       />
 
-      {/* ABOUT */}
       <label style={styles.label}>About Company</label>
       <textarea
         style={styles.textarea}
@@ -66,10 +57,8 @@ export default function EditForm({ content, setContent }) {
         onChange={(e) =>
           setContent({ ...content, about: e.target.value })
         }
-        placeholder="Write about your company"
       />
 
-      {/* WHY */}
       <label style={styles.label}>Why Choose Us</label>
       <textarea
         style={styles.textarea}
@@ -77,30 +66,20 @@ export default function EditForm({ content, setContent }) {
         onChange={(e) =>
           setContent({ ...content, why: e.target.value })
         }
-        placeholder="Why customers should choose you"
       />
 
-      {/* COMPANIES */}
-      <label style={styles.label}>
-        Company Names (comma separated)
-      </label>
+      <label style={styles.label}>Company Names (comma separated)</label>
       <input
         style={styles.input}
         value={companiesInput}
         onChange={(e) => setCompaniesInput(e.target.value)}
-        placeholder="BBC, TIME, CNBC, Forbes"
       />
 
-      {/* ACTIONS */}
       <div style={styles.actions}>
         <button style={styles.saveBtn} onClick={handleSave}>
           Save Changes
         </button>
-
-        <button
-          style={styles.cancelBtn}
-          onClick={() => navigate("/")}
-        >
+        <button style={styles.cancelBtn} onClick={() => navigate("/")}>
           Cancel
         </button>
       </div>
@@ -108,7 +87,6 @@ export default function EditForm({ content, setContent }) {
   );
 }
 
-/* ================= STYLES ================= */
 const styles = {
   wrapper: {
     minHeight: "100vh",
@@ -128,8 +106,6 @@ const styles = {
     marginTop: "20px",
     marginBottom: "8px",
     color: "#aaa",
-    fontSize: "14px",
-    letterSpacing: "1px",
   },
   input: {
     width: "100%",
@@ -138,7 +114,6 @@ const styles = {
     border: "1px solid #333",
     color: "#fff",
     borderRadius: "6px",
-    fontSize: "14px",
   },
   textarea: {
     width: "100%",
@@ -148,8 +123,6 @@ const styles = {
     border: "1px solid #333",
     color: "#fff",
     borderRadius: "6px",
-    fontSize: "14px",
-    resize: "vertical",
   },
   actions: {
     display: "flex",
@@ -162,16 +135,15 @@ const styles = {
     color: "#000",
     border: "none",
     padding: "12px 24px",
-    fontWeight: "600",
-    cursor: "pointer",
     borderRadius: "20px",
+    cursor: "pointer",
   },
   cancelBtn: {
     background: "transparent",
     color: "#aaa",
     border: "1px solid #444",
     padding: "12px 24px",
-    cursor: "pointer",
     borderRadius: "20px",
+    cursor: "pointer",
   },
 };
